@@ -1,0 +1,32 @@
+---
+type: Research Paper Chunk
+chunk_type: semantic-section
+paper: ../../papers/09-understanding-lstm-networks.md
+source: ../../papers/09-understanding-lstm-networks.md
+paper_title: Understanding LSTM Networks
+sequence: 9
+section: Conclusion
+section_role: conclusion
+section_index: 8
+pages: []
+topics: ["../../topics/long-short-term-memory.md", "../../topics/recurrent-neural-networks.md"]
+description: "Earlier, I mentioned the remarkable results people are achieving with RNNs. Essentially all of these are achieved using LSTMs. They really work a lot…"
+status: stable
+generated: { by: tools/build_chunks.py, at: 2026-11-17T16:30:00Z }
+---
+
+# Conclusion
+
+> Section 8 of 10 from [09 - Understanding LSTM Networks](../../papers/09-understanding-lstm-networks.md) · `conclusion` · pages n/a
+
+Earlier, I mentioned the remarkable results people are achieving with RNNs. Essentially all of these are achieved using LSTMs. They really work a lot better for most tasks!
+
+Written down as a set of equations, LSTMs look pretty intimidating. Hopefully, walking through them step by step in this essay has made them a bit more approachable.
+
+LSTMs were a big step in what we can accomplish with RNNs. It’s natural to wonder: is there another big step? A common opinion among researchers is: “Yes! There is a next step and it’s attention!” The idea is to let every step of an RNN pick information to look at from some larger collection of information. For example, if you are using an RNN to create a caption describing an image, it might pick a part of the image to look at for every word it outputs. In fact, [Xu, _et al._ (2015)](http://arxiv.org/pdf/1502.03044v2.pdf) do exactly this – it might be a fun starting point if you want to explore attention! There’s been a number of really exciting results using attention, and it seems like a lot more are around the corner…
+
+Attention isn’t the only exciting thread in RNN research. For example, Grid LSTMs by [Kalchbrenner, _et al._ (2015)](http://arxiv.org/pdf/1507.01526v1.pdf) seem extremely promising. Work using RNNs in generative models – such as [Gregor, _et al._ (2015)](http://arxiv.org/pdf/1502.04623.pdf), [Chung, _et al._ (2015)](http://arxiv.org/pdf/1506.02216v3.pdf), or [Bayer & Osendorfer (2015)](http://arxiv.org/pdf/1411.7610v3.pdf) – also seems very interesting. The last few years have been an exciting time for recurrent neural networks, and the coming ones promise to only be more so!
+
+---
+
+Full document: [09 - Understanding LSTM Networks](../../papers/09-understanding-lstm-networks.md) · Page-level evidence: [paper-pages/09-understanding-lstm-networks](../../paper-pages/09-understanding-lstm-networks/index.md)
