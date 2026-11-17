@@ -1,0 +1,97 @@
+---
+type: Research Paper Chunk
+chunk_type: page
+paper: ../../papers/03-scaling-laws-for-neural-language-models.md
+source: ../../papers/03-scaling-laws-for-neural-language-models.md
+paper_title: Scaling Laws for Neural Language Models
+sequence: 3
+page: 12
+pages: [12]
+page_of: 30
+topics: ["../../topics/scaling-laws.md", "../../topics/transformer-architecture.md", "../../topics/optimization.md"]
+description: "prediction for Bcrit, and that neither depends directly on model size except through the value of the loss that has been attained. These results can…"
+status: stable
+generated: { by: tools/build_chunks.py, at: 2026-11-17T16:30:00Z }
+---
+
+# Page 12 of 30 - Scaling Laws for Neural Language Models
+
+> Page 12 of the source PDF, verbatim as extracted. Canonical document: [03 - Scaling Laws for Neural Language Models](../../papers/03-scaling-laws-for-neural-language-models.md)
+
+prediction for Bcrit, and that neither depends directly on model size except through the value of the loss that has been attained. These results can be used to predict how training time and compute will vary with the batch size. To utilize both training time and compute as effectively as possible, it is best to train with a batch size B ≈Bcrit. Training at B ≫Bcrit minimizes the number of training steps, while B ≪Bcrit minimizes the use of compute.
+
+More specifically, it was demonstrated that for a wide variety of neural network tasks, the number of training steps S and the number of data examples processed E = BS satisfy the simple relation
+
+ S
+
+  E
+
+−1
+
+−1
+
+= 1 (5.1)
+
+Smin
+
+Emin
+
+when training to any fixed value of the loss L. Here Smin is the minimum number of steps necessary to reach L, while Emin is the minimum number of data examples that must be processed.
+
+We demonstrate the relation (5.1) for Transformers in Figure 18 in the appendix. This relation defines the critical batch size
+
+Bcrit(L) ≡Emin
+
+(5.2)
+
+Smin
+
+which is a function of the target value of the loss. Training at the critical batch size makes a roughly optimal time/compute tradeoff, requiring 2Smin training steps and processing E = 2Emin data examples.
+
+In Figure 10 we have plotted the critical batch size and gradient noise scale5 as a function of training loss for two different models. We see that Bcrit(L) is independent of model size, and only depends on the loss L. So the predictions of \[MKAT18\] continue to hold for Transformer language models. The critical batch size can be fit with a power-law in the loss
+
+Bcrit(L) ≈ B∗ L1/αB (5.3)
+
+where B∗≈2 × 108 and αB ≈0.21.
+
+We have chosen this parameterization for Bcrit(L) because as the loss approaches its minimum value Lmin, the gradient noise scale is expected to diverge, and we expect Bcrit to track this noise scale. We do not know Lmin, as we see no sign that our models are approaching it, but Lmin > 0 since the entropy of natural language is non-zero. Since apparently Lmin is much smaller than the values of L we have achieved, we used a parameterization where Bcrit diverges as L →0.
+
+We will use Bcrit(L) to estimate the relation between the number of training steps S while training at batch size B = 219 tokens and the number of training steps while training at B ≫Bcrit. This is simply
+
+Smin(S) ≡ S 1 + Bcrit(L)/B (minimum steps, at B ≫Bcrit) (5.4)
+
+for any given target value L for the loss. This also defines a critical value of the compute needed to train to L with a model of size N if we were to train at B ≪Bcrit(L). This is
+
+Cmin(C) ≡ C 1 + B/Bcrit(L) (minimum compute, at B ≪Bcrit) (5.5)
+
+where C = 6NBS estimates the (non-embedding) compute used at batch size B.
+
+5.2 Results for L(N, Smin) and Performance with Model Size and Compute
+
+Now we will use Smin defined in Equation (5.4) to obtain a simple and universal fit for the dependence of the loss on model size and training time in the infinite data limit. We will fit the stable, Adam-optimized training runs using Equation (1.6), repeated here for convenience:
+
+ Sc
+
+αN
+
+αS
+
+Nc
+
+L(N, Smin) =
+
++
+
+(5.6)
+
+N
+
+Smin
+
+for the loss. We include all training steps after the warmup period of the learning rate schedule, and find a fit to the data with the parameters:
+
+5Although the critical batch size roughly matches the gradient noise scale, we are using a direct measurements of Bcrit from Figures 18 and 10 for all our later analyses.
+
+---
+
+[previous page](page-011.md) · [next page](page-013.md) · [all pages](index.md)
