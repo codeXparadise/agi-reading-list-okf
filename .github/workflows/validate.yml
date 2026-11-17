@@ -10,3 +10,7 @@ jobs:
           python-version: "3.12"
       - name: Validate bundle
         run: python tools/validate_okf.py .
+      - name: Regenerate retrieval chunks
+        run: python tools/build_chunks.py .
+      - name: Check the chunk trees are reproducible
+        run: git diff --exit-code
