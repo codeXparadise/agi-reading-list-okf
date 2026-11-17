@@ -1,6 +1,7 @@
 # Bundle Update Log
 
 ## 2026-11-18
+* **Update**: Re-cropped all 253 figures. Each one is now rendered from the page with 22pt of side padding and 18/24pt of vertical padding, absorbing the small text blocks that belong to the figure (axis labels, ticks, legends, annotations) and pulling the edge back rather than slicing through any line of text or a neighbouring panel in a grid figure. Filenames are unchanged, so every link in `papers/`, `paper-sections/` and `paper-pages/` still resolves.
 * **Update**: Filled the eight web-sourced papers (02, 04, 08, 09, 22, 23, 26, 27). Their text is now extracted from the published pages and PDFs rather than left as a summary and a link, so every one of the 30 papers has section chunks. Paper 26 keeps its book pagination and gained 57 page chunks; paper 22 is an excerpt, marked as such in frontmatter.
 * **Update**: `tools/validate_okf.py` now ignores links inside fenced code and any target with a URL scheme, so code samples in paper 02 no longer read as broken links.
 
