@@ -65,10 +65,12 @@ def main(root="."):
             prefix = base.split("-")[0]
             if prefix.isdigit() and int(prefix) != int(seq):
                 errors.append("%s: filename prefix %s does not match sequence %s" % (rel, prefix, seq))
-        # links
-        for target in LINK.findall(body):
+        # links (ignoring fenced code and any target with a URL scheme)
+        scan = re.sub(r"```.*?```", "", body, flags=re.S)
+        scan = re.sub(r"`[^`\n]*`", "", scan)
+        for target in LINK.findall(scan):
             target = target.split("#")[0].strip()
-            if not target or target.startswith(("http://", "https://", "mailto:")):
+            if not target or re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", target):
                 continue
             if target.startswith("/"):
                 resolved = os.path.join(root, target.lstrip("/"))
@@ -135,7 +137,11 @@ def check_retrieval_layer(root, errors, warnings):
             if meta["pages"]:
                 errors.append("papers/%s.md: external-only paper contains %d page markers" % (slug, meta["pages"]))
         else:
-            if not page_files:
+            if meta["pages"] == 0:
+                if page_files:
+                    errors.append("paper-pages/%s: %d page chunks but the canonical document has no page markers"
+                                  % (slug, len(page_files)))
+            elif not page_files:
                 errors.append("paper-pages/%s: extracted paper has no page chunks" % slug)
             elif len(page_files) != meta["pages"]:
                 errors.append("paper-pages/%s: %d page chunks but the canonical document has %d page markers"

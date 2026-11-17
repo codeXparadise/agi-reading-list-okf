@@ -157,12 +157,14 @@ def parse_paper(path):
         "sequence": seq,
         "topics": topics,
         "external_only": full.strip() == "external-only",
+        "resource": fm_get(fm, "resource") or "",
         "fulltext": m.group(1) if m else "",
     }
 
 
 def split_sections(fulltext, title):
     """Return [(heading, role, text, pages)] in document order, using the paper's own headings."""
+    paginated = bool(PAGE_RE.search(fulltext))
     lines = fulltext.split("\n")
     chunks, cur = [], {"heading": None, "text": [], "pages": set()}
     page = 1
@@ -206,7 +208,7 @@ def split_sections(fulltext, title):
         while slug in seen:
             slug = "%s-%d" % (base, i); i += 1
         seen.add(slug)
-        pages = sorted(p for p in c["pages"] if p)
+        pages = sorted(p for p in c["pages"] if p) if paginated else []
         out.append({"heading": heading, "role": role, "slug": slug, "text": body, "pages": pages})
     if len(out) < 3:
         allpages = sorted({p for c in out for p in c["pages"]})
@@ -307,15 +309,14 @@ def build(root, check=False):
                "* Canonical document: [%02d - %s](%s)" % (p["sequence"], p["title"], canonical),
                "", "## Sections", ""]
         for i, s in enumerate(sections, 1):
-            idx.append("%d. [%s](%02d-%s.md) - `%s`%s · pages %s - %s" % (
-                i, s["heading"], i, s["slug"], s["role"],
-                (" · %d words" % len(s["text"].split())),
-                (str(s["pages"][0]) if s["pages"] else "-"),
-                (str(s["pages"][-1]) if s["pages"] else "-")))
+            pag = ("pages %d-%d" % (s["pages"][0], s["pages"][-1])) if s["pages"] else "no pagination"
+            idx.append("%d. [%s](%02d-%s.md) - `%s` · %d words · %s" % (
+                i, s["heading"], i, s["slug"], s["role"], len(s["text"].split()), pag))
         idx.append("")
         idx.append("## Pages")
         idx.append("")
-        idx.append("* [%d page chunks](../../paper-pages/%s/index.md)" % (len(pages), slug))
+        idx.append("* [%d page chunks](../../paper-pages/%s/index.md)" % (len(pages), slug)
+                   if pages else "* No page chunks: the source carries no page numbers")
         write(os.path.join(sec_out, "index.md"), "\n".join(idx) + "\n", check, changed)
 
         for i, s in enumerate(sections, 1):
@@ -349,6 +350,17 @@ def build(root, check=False):
             write(os.path.join(sec_out, "%02d-%s.md" % (i, s["slug"])), "\n".join(fm + body) + "\n", check, changed)
 
         # ---------------- page chunks
+        if not pages:
+            idx = ["# %02d - %s - pages" % (p["sequence"], p["title"]), "",
+                   "**No page chunks for this item.** Its text was extracted from a web source that carries no page "
+                   "boundaries, so there is no original page number to cite. Inventing pagination would make "
+                   "citations wrong, so the [semantic sections](../../paper-sections/%s/index.md) are the evidence "
+                   "layer for this paper instead." % slug, "",
+                   "* Canonical document: [%02d - %s](%s)" % (p["sequence"], p["title"], canonical),
+                   "* Read the original: %s" % (p["resource"]), ""]
+            write(os.path.join(pg_out, "index.md"), "\n".join(idx) + "\n", check, changed)
+            continue
+
         idx = ["# %02d - %s - pages" % (p["sequence"], p["title"]), "",
                "Page-level evidence chunks, one per page of the source PDF, text preserved as extracted. Use these "
                "only when a question needs an exact quotation, equation, figure or citation; otherwise prefer the "
@@ -359,7 +371,7 @@ def build(root, check=False):
             idx.append("* [Page %03d](page-%03d.md) - %s" % (n, n, clean_snippet(t, 110)))
         write(os.path.join(pg_out, "index.md"), "\n".join(idx) + "\n", check, changed)
 
-        for n, t in pages:
+        for pi, (n, t) in enumerate(pages):
             fm = ["---",
                   "type: Research Paper Chunk",
                   "chunk_type: page",
@@ -383,8 +395,8 @@ def build(root, check=False):
             body.append("")
             body.append("---")
             body.append("")
-            prev_l = "[previous page](page-%03d.md)" % (n - 1) if n > 1 else "first page"
-            next_l = "[next page](page-%03d.md)" % (n + 1) if n < len(pages) else "last page"
+            prev_l = ("[previous page](page-%03d.md)" % pages[pi - 1][0]) if pi > 0 else "first page"
+            next_l = ("[next page](page-%03d.md)" % pages[pi + 1][0]) if pi + 1 < len(pages) else "last page"
             body.append("%s · %s · [all pages](index.md)" % (prev_l, next_l))
             write(os.path.join(pg_out, "page-%03d.md" % n), "\n".join(fm + body) + "\n", check, changed)
 
