@@ -1,0 +1,26 @@
+---
+type: Research Paper Chunk
+chunk_type: semantic-section
+paper: ../../papers/14-neural-machine-translation-jointly-learning-to-align-and-translate.md
+source: ../../papers/14-neural-machine-translation-jointly-learning-to-align-and-translate.md
+paper_title: Neural Machine Translation by Jointly Learning to Align and Translate
+sequence: 14
+section: ABSTRACT
+section_role: abstract
+section_index: 2
+pages: [1]
+topics: ["../../topics/attention.md", "../../topics/machine-translation.md", "../../topics/sequence-to-sequence.md"]
+description: "Neural machine translation is a recently proposed approach to machine translation. Unlike the traditional statistical machine translation, the neural…"
+status: stable
+generated: { by: tools/build_chunks.py, at: 2026-11-17T16:30:00Z }
+---
+
+# ABSTRACT
+
+> Section 2 of 14 from [14 - Neural Machine Translation by Jointly Learning to Align and Translate](../../papers/14-neural-machine-translation-jointly-learning-to-align-and-translate.md) · `abstract` · pages 1-1
+
+Neural machine translation is a recently proposed approach to machine translation. Unlike the traditional statistical machine translation, the neural machine translation aims at building a single neural network that can be jointly tuned to maximize the translation performance. The models proposed recently for neural machine translation often belong to a family of encoder–decoders and encode a source sentence into a fixed-length vector from which a decoder generates a translation. In this paper, we conjecture that the use of a fixed-length vector is a bottleneck in improving the performance of this basic encoder–decoder architecture, and propose to extend this by allowing a model to automatically (soft-)search for parts of a source sentence that are relevant to predicting a target word, without having to form these parts as a hard segment explicitly. With this new approach, we achieve a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation. Furthermore, qualitative analysis reveals that the (soft-)alignments found by the model agree well with our intuition.
+
+---
+
+Full document: [14 - Neural Machine Translation by Jointly Learning to Align and Translate](../../papers/14-neural-machine-translation-jointly-learning-to-align-and-translate.md) · Page-level evidence: [paper-pages/14-neural-machine-translation-jointly-learning-to-align-and-translate](../../paper-pages/14-neural-machine-translation-jointly-learning-to-align-and-translate/index.md)
