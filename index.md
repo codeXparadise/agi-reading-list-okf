@@ -12,6 +12,14 @@ A structured, agent-readable knowledge base built from the 30-paper AI reading l
 * [Agent guide](AGENTS.md) - how an agent should traverse, cite and answer from this bundle
 * [Orientation in Seven Days](reading-paths/orientation-seven-days.md) - the fastest route through all 30
 
+## Retrieval layers
+
+Three layers, smallest first. Agents should answer from the top layer and only drop down when the question needs it.
+
+* [Paper sections](paper-sections/index.md) - every paper split on its own headings into semantic chunks (abstract, introduction, method, experiments, results, limitations, conclusion), each carrying its paper, sequence, role and page range
+* [Paper pages](paper-pages/index.md) - one chunk per page of the source PDF, text verbatim, with the original page number; use only for exact quotations, equations, figures or citations
+* [Canonical papers](papers/index.md) - the complete documents, unchanged and authoritative
+
 ## Papers
 
 * [Core Architecture & Transformers](sections/01-core-architecture-and-transformers.md) - The Transformer and the convolutional architectures that preceded and surround it: attention, scaling behaviour, ResNets and dilated convolutions. (7 papers: 01-07)
@@ -22,12 +30,12 @@ A structured, agent-readable knowledge base built from the 30-paper AI reading l
 
 ## Browse
 
-* [All papers](papers/index.md) - the full 30 in reading order
+* [All papers](papers/index.md) - the full 30 in reading order, complete documents
 * [Topics](topics/index.md) - 19 cross-cutting concepts: attention, scaling laws, MDL, Kolmogorov complexity, memory and more
 * [People](people/index.md) - the researchers behind the list
 * [Reading paths](reading-paths/index.md) - three curated routes through the material
 * [References](references/index.md) - the original reading list and provenance
-* [Assets](assets/) - figures extracted from the PDFs
+* [Assets](assets/) - figures extracted from the PDFs, referenced by the page chunks rather than copied
 
 ## Conformance
 

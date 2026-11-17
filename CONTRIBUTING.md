@@ -24,6 +24,14 @@ verified: { by: process:okf-validator, at: 2026-11-17T16:30:00Z }
 
 **Fix an extraction.** Text and figures are generated; edit the generator rather than the output where you can, and re-run the validator afterwards. If you edit a document by hand, bump `generated.at`.
 
+**Never hand-edit `paper-sections/` or `paper-pages/`.** They are generated from `papers/*.md` by `tools/build_chunks.py`; edit the canonical document and regenerate:
+
+```bash
+python tools/build_chunks.py . && python tools/validate_okf.py .
+```
+
+A chunk tree that differs from what the generator produces fails CI.
+
 **Add a topic or a person.** Same shape as the existing ones: frontmatter with `type`, a `papers` list, and a body that links back. Add it to the matching `index.md`.
 
 ## Before opening a pull request

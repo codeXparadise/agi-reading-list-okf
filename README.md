@@ -18,7 +18,9 @@ The bundle follows **Open Knowledge Format (OKF) v0.2**, the minimal convention 
 
 | Path | What it holds |
 | --- | --- |
-| `papers/` | One concept document per paper: overview, full extracted text, figures inline, relationships, provenance |
+| `papers/` | The canonical document per paper: overview, full extracted text, figures inline, relationships, provenance. Authoritative and complete |
+| `paper-sections/` | **Retrieval layer 1.** Each paper split on its own headings into semantic chunks - abstract, introduction, method, experiments, results, limitations, conclusion - with role, sequence and page range in frontmatter |
+| `paper-pages/` | **Retrieval layer 2.** One chunk per page of the source PDF, text verbatim, original page number preserved. For exact quotations, equations, figures and citations |
 | `sections/` | The five thematic groups of the original list |
 | `topics/` | 19 cross-cutting concepts - attention, scaling laws, memory, MDL, Kolmogorov complexity, generative models |
 | `people/` | The researchers behind the papers, with the papers each one wrote |
@@ -27,12 +29,44 @@ The bundle follows **Open Knowledge Format (OKF) v0.2**, the minimal convention 
 | `assets/` | Figures extracted from the PDFs, numbered by paper |
 | `tools/` | `validate_okf.py` - checks the bundle for OKF conformance and broken links |
 
+## Three layers, one corpus
+
+The bundle is built for retrieval, not just for reading. Every paper exists at three levels of granularity, and an agent is expected to answer from the smallest one that can carry the answer:
+
+| Layer | Path | Size | Use it for |
+| --- | --- | --- | --- |
+| Semantic sections | `paper-sections/<paper>/` | 412 chunks | "What does it say about X?" - one to three chunks answer most questions |
+| Page evidence | `paper-pages/<paper>/` | 411 chunks | Exact quotations, equations as printed, figure references, citations |
+| Canonical document | `papers/<paper>.md` | 30 documents | Whole-paper questions, and checking a chunk has not lost context |
+
+The section chunks are not character-count windows: they follow the paper's own headings, in the paper's own order, with the heading text preserved in `section` and mapped to a `section_role`. Headings that are not real sections - titles, author lines, figure labels, table-of-contents lines, stray math - are rejected and their text merged into the preceding chunk, so nothing is lost and no structure is invented. A paper whose headings were too sparse to trust gets one conservative whole-text chunk rather than a fabricated outline.
+
+Each chunk carries its provenance in frontmatter:
+
+```yaml
+type: Research Paper Chunk
+chunk_type: semantic-section     # or: page
+paper: ../../papers/01-attention-is-all-you-need.md
+source: ../../papers/01-attention-is-all-you-need.md
+paper_title: Attention Is All You Need
+sequence: 1
+section: 3 Model Architecture
+section_role: method
+pages: [2, 3, 4, 5]
+topics: ["../../topics/attention.md"]
+```
+
+Page chunks additionally carry `page` and `page_of`. Figures are not duplicated: page chunks keep the same `../../assets/...` links the canonical document uses.
+
+Eight papers (02, 04, 08, 09, 22, 23, 26, 27) are web articles, a book chapter or a thesis with no open PDF. They have **no page chunks and no section chunks** - their section index states that they are summary/link-only, so an agent cannot invent page-level evidence for them.
+
 ## How it was built
 
 1. The list was read from the source PDF and the 30 items were identified, in order, with their authors, venues and canonical links.
 2. Each paper was fetched from arXiv where an open version exists, then text and figures were extracted page by page with PyMuPDF. Raster figures are lifted directly; vector figures are detected through their captions and rendered at 150 dpi, so plots that are drawn rather than embedded survive too.
 3. Every paper became a concept document with frontmatter carrying its identity (`type`, `title`, `resource`, `year`, `venue`), its position (`sequence`, `section`), its provenance (`sources`, `generated`, `verified`) and its place in the graph (`builds_on`, `enables`, `topics`).
 4. Indexes, the log, and the repository documentation were generated from the same metadata, so the tree and the graph can never disagree.
+5. The retrieval layer was generated from the canonical documents by `tools/build_chunks.py`: sections from each paper's own headings, pages from the `<!-- page N -->` markers. Both trees are deterministic - the same input produces byte-identical output, and CI fails if they drift.
 
 22 of the 30 items are open PDFs and carry full text plus figures. The other 8 - *The Annotated Transformer*, AlexNet, Karpathy's RNN essay, Olah's LSTM post, *The First Law of Complexodynamics*, the 1993 Hinton and van Camp paper, the Kolmogorov complexity book and Legg's thesis - are not distributed as open PDFs, so their concept documents carry a summary and a canonical link rather than republished text.
 
@@ -67,7 +101,16 @@ That is enough to build retrieval, a chat agent, or an evaluation set. Nothing i
 python tools/validate_okf.py .
 ```
 
-The validator checks the OKF conformance rules (every non-reserved markdown file has frontmatter with a non-empty `type`; `index.md` and `log.md` follow their reserved structure) and additionally reports broken internal links and papers whose frontmatter sequence does not match their filename. It runs in CI on every push.
+The validator checks the OKF conformance rules (every non-reserved markdown file has frontmatter with a non-empty `type`; `index.md` and `log.md` follow their reserved structure), reports broken internal links, and checks the retrieval layer: every canonical paper has a section index, every extracted paper has one page chunk per source page, external-only papers have none, and every chunk's `paper`, `source` and `sequence` point back to the right canonical document.
+
+To regenerate the chunk trees after editing a paper:
+
+```bash
+python tools/build_chunks.py .          # rewrite paper-sections/ and paper-pages/
+python tools/build_chunks.py . --check  # report what would change, write nothing
+```
+
+CI runs both, and fails if regenerating produces a diff.
 
 ## Contributing
 
