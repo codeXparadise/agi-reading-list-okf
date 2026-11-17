@@ -72,9 +72,16 @@ When a user asks for a source, give `resource` from the frontmatter, not a link 
 
 Every concept carries `generated` (who wrote it, when) and `verified` (what confirmed it). Papers are stable artefacts: the `verified` entry records that the extraction was checked, not that the paper's claims were reviewed. Do not describe a paper as "verified" to a user; describe the bundle's extraction as checked.
 
-## Summary / link-only papers
+## Web-sourced papers
 
-Eight items - 02, 04, 08, 09, 22, 23, 26, 27 - are web articles, a book chapter or a thesis with no open PDF. They have **no section chunks and no page chunks**; their `paper-sections/<paper>/index.md` says so explicitly. For these, answer only from the summary in the canonical document, say that the bundle holds a summary rather than full text, and give the canonical link. Never cite a page number for them.
+Eight items - 02, 04, 08, 09, 22, 23, 26, 27 - were extracted from the web rather than from arXiv. They have section chunks like every other paper, so answer from those normally. Two differences matter when you cite:
+
+- **No page numbers.** Their `paper-pages/<paper>/index.md` says no page chunks exist, because a web page carries no original pagination. Cite the section, not a page. The exception is paper 26, the Kolmogorov book, whose open PDF is paginated: it has page chunks and you may cite them.
+- **Figures are remote.** Their figures point at absolute URLs on the authors' sites rather than into `assets/`. Quote the caption and the surrounding text rather than relying on the image.
+
+Paper 22, *The First Law of Complexodynamics*, is an **excerpt**: the opening argument and the closing passage, with the middle of the essay at the link. Do not summarise it as if you had the whole essay; say that the bundle holds an excerpt.
+
+Papers 26 and 22 also carry `extraction.coverage` in frontmatter (`pages 1-85 of 519`, `excerpt`). Check it before claiming the bundle holds a paper in full.
 
 ## What not to do
 

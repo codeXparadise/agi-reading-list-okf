@@ -35,8 +35,8 @@ The bundle is built for retrieval, not just for reading. Every paper exists at t
 
 | Layer | Path | Size | Use it for |
 | --- | --- | --- | --- |
-| Semantic sections | `paper-sections/<paper>/` | 412 chunks | "What does it say about X?" - one to three chunks answer most questions |
-| Page evidence | `paper-pages/<paper>/` | 411 chunks | Exact quotations, equations as printed, figure references, citations |
+| Semantic sections | `paper-sections/<paper>/` | 567 chunks | "What does it say about X?" - one to three chunks answer most questions |
+| Page evidence | `paper-pages/<paper>/` | 495 chunks, 23 papers | Exact quotations, equations as printed, figure references, citations |
 | Canonical document | `papers/<paper>.md` | 30 documents | Whole-paper questions, and checking a chunk has not lost context |
 
 The section chunks are not character-count windows: they follow the paper's own headings, in the paper's own order, with the heading text preserved in `section` and mapped to a `section_role`. Headings that are not real sections - titles, author lines, figure labels, table-of-contents lines, stray math - are rejected and their text merged into the preceding chunk, so nothing is lost and no structure is invented. A paper whose headings were too sparse to trust gets one conservative whole-text chunk rather than a fabricated outline.
@@ -58,7 +58,7 @@ topics: ["../../topics/attention.md"]
 
 Page chunks additionally carry `page` and `page_of`. Figures are not duplicated: page chunks keep the same `../../assets/...` links the canonical document uses.
 
-Eight papers (02, 04, 08, 09, 22, 23, 26, 27) are web articles, a book chapter or a thesis with no open PDF. They have **no page chunks and no section chunks** - their section index states that they are summary/link-only, so an agent cannot invent page-level evidence for them.
+Eight papers (02, 04, 08, 09, 22, 23, 26, 27) came from the web rather than arXiv. They have section chunks like every other paper; only paper 26 has page chunks, because only it has real pagination. Their page index states that no page chunks exist and why, so an agent cannot invent page-level evidence for them.
 
 ## How it was built
 
@@ -68,7 +68,9 @@ Eight papers (02, 04, 08, 09, 22, 23, 26, 27) are web articles, a book chapter o
 4. Indexes, the log, and the repository documentation were generated from the same metadata, so the tree and the graph can never disagree.
 5. The retrieval layer was generated from the canonical documents by `tools/build_chunks.py`: sections from each paper's own headings, pages from the `<!-- page N -->` markers. Both trees are deterministic - the same input produces byte-identical output, and CI fails if they drift.
 
-22 of the 30 items are open PDFs and carry full text plus figures. The other 8 - *The Annotated Transformer*, AlexNet, Karpathy's RNN essay, Olah's LSTM post, *The First Law of Complexodynamics*, the 1993 Hinton and van Camp paper, the Kolmogorov complexity book and Legg's thesis - are not distributed as open PDFs, so their concept documents carry a summary and a canonical link rather than republished text.
+All 30 papers carry full text. Twenty-two were extracted from open PDFs with PyMuPDF; the other eight - *The Annotated Transformer*, AlexNet, Karpathy's RNN essay, Olah's LSTM post, *The First Law of Complexodynamics*, the 1993 Hinton and van Camp paper, the Kolmogorov complexity book and Legg's thesis - are not distributed as open PDFs on arXiv, so their text was extracted from their published web pages and PDFs on the authors' own sites and folded into the same shape.
+
+Two honest caveats about those eight. Their figures are referenced by absolute URL to the source rather than mirrored into `assets/`, because those hosts are not reachable from the extraction environment; and they carry no page chunks, because a web page has no original page numbers and inventing them would make citations wrong. The exception is the Kolmogorov book, whose open PDF has real pagination - pages 1-85 of 519 were fetched, and those page numbers are preserved as `<!-- page N -->` markers, so it has page chunks. The reading list points at chapter 14 (p. 425), which falls outside the fetched range; the link is in the document. *The First Law of Complexodynamics* is the one excerpt rather than a full text: the page extractor capped the fetch, so the document holds the opening argument and the closing passage, with the full essay at the link.
 
 ## Reading it as a human
 

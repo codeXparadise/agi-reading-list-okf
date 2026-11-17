@@ -17,7 +17,7 @@ A structured, agent-readable knowledge base built from the 30-paper AI reading l
 Three layers, smallest first. Agents should answer from the top layer and only drop down when the question needs it.
 
 * [Paper sections](paper-sections/index.md) - every paper split on its own headings into semantic chunks (abstract, introduction, method, experiments, results, limitations, conclusion), each carrying its paper, sequence, role and page range
-* [Paper pages](paper-pages/index.md) - one chunk per page of the source PDF, text verbatim, with the original page number; use only for exact quotations, equations, figures or citations
+* [Paper pages](paper-pages/index.md) - one chunk per page of the source PDF, text verbatim, with the original page number (23 of the 30 papers have pagination); use only for exact quotations, equations, figures or citations
 * [Canonical papers](papers/index.md) - the complete documents, unchanged and authoritative
 
 ## Papers
