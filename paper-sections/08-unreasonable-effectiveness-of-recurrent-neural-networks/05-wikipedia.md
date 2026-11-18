@@ -92,7 +92,7 @@ The model completely makes up the timestamp, id, and so on. Also, note that it c
 
 The results above suggest that the model is actually quite good at learning complex syntactic structures. Impressed by these results, my labmate ( [Justin Johnson](http://cs.stanford.edu/people/jcjohns/)) and I decided to push even further into structured territories and got a hold of [this book](http://stacks.math.columbia.edu/) on algebraic stacks/geometry. We downloaded the raw Latex source file (a 16MB file) and trained a multilayer LSTM. Amazingly, the resulting sampled Latex _almost_ compiles. We had to step in and fix a few issues manually but then you get plausible looking math, it’s quite astonishing:
 
-![](https://karpathy.github.io/assets/rnn/latex4.jpeg)
+![](../../assets/08/web-08-05.jpg)
 
 Sampled (fake) algebraic geometry. [Here's the actual pdf.](http://cs.stanford.edu/people/jcjohns/fake-math/4.pdf)
 

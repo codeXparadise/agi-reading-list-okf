@@ -73,7 +73,7 @@ in the left and right halves of Figure 1, respectively.
 Image(filename='images/ModalNet-21.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_14_0.png)
+![png](../../assets/02/web-02-02.png)
 
 ---
 

@@ -56,13 +56,13 @@ for layer in range(1, 6, 2):
 Encoder Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_1.png)
+![png](../../assets/02/web-02-11.png)
 
 ```
 Encoder Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_3.png)
+![png](../../assets/02/web-02-12.png)
 
 ```
 Encoder Layer 6
@@ -74,37 +74,37 @@ Encoder Layer 6
 Decoder Self Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_7.png)
+![png](../../assets/02/web-02-14.png)
 
 ```
 Decoder Src Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_9.png)
+![png](../../assets/02/web-02-15.png)
 
 ```
 Decoder Self Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_11.png)
+![png](../../assets/02/web-02-16.png)
 
 ```
 Decoder Src Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_13.png)
+![png](../../assets/02/web-02-17.png)
 
 ```
 Decoder Self Layer 6
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_15.png)
+![png](../../assets/02/web-02-18.png)
 
 ```
 Decoder Src Layer 6
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_17.png)
+![png](../../assets/02/web-02-19.png)
 
 ---
 

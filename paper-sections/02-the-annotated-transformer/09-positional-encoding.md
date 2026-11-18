@@ -78,7 +78,7 @@ plt.legend(["dim %d"%p for p in [4,5,6,7]])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_49_0.png)
+![png](../../assets/02/web-02-06.png)
 
 We also experimented with using learned positional embeddings
 [(cite)](https://arxiv.org/pdf/1705.03122.pdf) instead, and found that the two

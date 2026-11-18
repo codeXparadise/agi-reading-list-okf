@@ -23,13 +23,13 @@ The key to LSTMs is the cell state, the horizontal line running through the top 
 
 The cell state is kind of like a conveyor belt. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png)
+![](../../assets/09/web-09-08.png)
 
 The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates.
 
 Gates are a way to optionally let information through. They are composed out of a sigmoid neural net layer and a pointwise multiplication operation.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-gate.png)
+![](../../assets/09/web-09-09.png)
 
 The sigmoid layer outputs numbers between zero and one, describing how much of each component should be let through. A value of zero means “let nothing through,” while a value of one means “let everything through!”
 

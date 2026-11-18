@@ -25,7 +25,7 @@ Traditional neural networks can’t do this, and it seems like a major shortcomi
 
 Recurrent neural networks address this issue. They are networks with loops in them, allowing information to persist.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-rolled.png)
+![](../../assets/09/web-09-01.png)
 
 **Recurrent Neural Networks have loops.**
 
@@ -33,7 +33,7 @@ In the above diagram, a chunk of neural network, AA, looks at some input xtxt an
 
 These loops make recurrent neural networks seem kind of mysterious. However, if you think a bit more, it turns out that they aren’t all that different than a normal neural network. A recurrent neural network can be thought of as multiple copies of the same network, each passing a message to a successor. Consider what happens if we unroll the loop:
 
-![An unrolled recurrent neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png)
+![An unrolled recurrent neural network.](../../assets/09/web-09-02.png)
 
 **An unrolled recurrent neural network.**
 

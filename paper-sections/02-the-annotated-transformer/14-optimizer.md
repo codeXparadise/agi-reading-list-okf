@@ -75,7 +75,7 @@ plt.legend(["512:4000", "512:8000", "256:4000"])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_69_0.png)
+![png](../../assets/02/web-02-07.png)
 
 ---
 

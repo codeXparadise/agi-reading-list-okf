@@ -25,7 +25,7 @@ LSTMs are explicitly designed to avoid the long-term dependency problem. Remembe
 
 All recurrent neural networks have the form of a chain of repeating modules of neural network. In standard RNNs, this repeating module will have a very simple structure, such as a single tanh layer.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png)
+![](../../assets/09/web-09-05.png)
 
 **The repeating module in a standard RNN contains a single layer.**
 
@@ -37,7 +37,7 @@ LSTMs also have this chain like structure, but the repeating module has a differ
 
 Don’t worry about the details of what’s going on. We’ll walk through the LSTM diagram step by step later. For now, let’s just try to get comfortable with the notation we’ll be using.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM2-notation.png)
+![](../../assets/09/web-09-07.png)
 
 In the above diagram, each line carries an entire vector, from the output of one node to the inputs of others. The pink circles represent pointwise operations, like vector addition, while the yellow boxes are learned neural network layers. Lines merging denote concatenation, while a line forking denote its content being copied and the copies going to different locations.
 

@@ -189,7 +189,7 @@ The input character sequence (blue/green) is colored based on the _firing_ of a 
 \
 The neuron highlighted in this image seems to get very excited about URLs and turns off outside of the URLs. The LSTM is likely using this neuron to remember if it is inside a URL or not.\
 \
-![](https://karpathy.github.io/assets/rnn/under2.jpeg)\
+![](../../assets/08/web-08-08.jpg)\
 \
 The highlighted neuron here gets very excited when the RNN is inside the \[\[ \]\] markdown environment and turns off outside of it. Interestingly, the neuron can't turn on right after it sees the character "\[", it must wait for the second "\[" and then activate. This task of counting whether the model has seen one or two "\[" is likely done with a different neuron.\
 \
@@ -197,7 +197,7 @@ The highlighted neuron here gets very excited when the RNN is inside the \[\[ \]
 \
 Here we see a neuron that varies seemingly linearly across the \[\[ \]\] environment. In other words its activation is giving the RNN a time-aligned coordinate system across the \[\[ \]\] scope. The RNN can use this information to make different characters more or less likely depending on how early/late it is in the \[\[ \]\] scope (perhaps?).\
 \
-![](https://karpathy.github.io/assets/rnn/under4.jpeg)\
+![](../../assets/08/web-08-10.jpg)\
 \
 Here is another neuron that has very local behavior: it is relatively silent but sharply turns off right after the first "w" in the "www" sequence. The RNN might be using this neuron to count up how far in the "www" sequence it is, so that it can know whether it should emit another "w", or if it should start the URL.\
 \

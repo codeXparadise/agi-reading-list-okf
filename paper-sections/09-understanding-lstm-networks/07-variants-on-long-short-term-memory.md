@@ -23,17 +23,17 @@ What I’ve described so far is a pretty normal LSTM. But not all LSTMs are the 
 
 One popular LSTM variant, introduced by [Gers & Schmidhuber (2000)](ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf), is adding “peephole connections.” This means that we let the gate layers look at the cell state.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-peepholes.png)
+![](../../assets/09/web-09-14.png)
 
 The above diagram adds peepholes to all the gates, but many papers will give some peepholes and not others.
 
 Another variation is to use coupled forget and input gates. Instead of separately deciding what to forget and what we should add new information to, we make those decisions together. We only forget when we’re going to input something in its place. We only input new values to the state when we forget something older.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-tied.png)
+![](../../assets/09/web-09-15.png)
 
 A slightly more dramatic variation on the LSTM is the Gated Recurrent Unit, or GRU, introduced by [Cho, et al. (2014)](http://arxiv.org/pdf/1406.1078v3.pdf). It combines the forget and input gates into a single “update gate.” It also merges the cell state and hidden state, and makes some other changes. The resulting model is simpler than standard LSTM models, and has been growing increasingly popular.
 
-![A gated recurrent unit neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png)
+![A gated recurrent unit neural network.](../../assets/09/web-09-16.png)
 
 These are only a few of the most notable LSTM variants. There are lots of others, like Depth Gated RNNs by [Yao, et al. (2015)](http://arxiv.org/pdf/1508.03790v2.pdf). There’s also some completely different approach to tackling long-term dependencies, like Clockwork RNNs by [Koutnik, et al. (2014)](http://arxiv.org/pdf/1402.3511v1.pdf).
 

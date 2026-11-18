@@ -43,7 +43,7 @@ dropout rate Pdrop = 0.1, instead of 0.3.
 Image(filename="images/results.png")
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_113_0.png)
+![png](../../assets/02/web-02-10.png)
 
 > The code we have written here is a version of the base model. There are fully
 > trained version of this system available here [(Example\\

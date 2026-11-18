@@ -33,6 +33,8 @@ First, some background: we all know the Second Law, which says that the entropy 
 
 The point that interests us is this: even though isolated physical systems get monotonically more entropic, they don't get monotonically more "complicated" or "interesting." Sean didn't define what he meant by "complicated" or "interesting" here—indeed, defining those concepts was part of his challenge—but he illustrated what he had in mind with the example of a coffee cup. Shamelessly ripping off his slides:
 
+![Sean Carroll's coffee-cup slide: entropy rises left to right, but the complexity of the mixture peaks in the middle.](../../assets/22/web-22-01.jpg)
+
 Entropy increases monotonically from left to right, but intuitively, the "complexity" seems highest in the middle picture: the one with all the tendrils of milk. And same is true for the whole universe: shortly after the big bang, the universe was basically just a low-entropy soup of high-energy particles. A googol years from now, after the last black holes have sputtered away in bursts of Hawking radiation, the universe will basically be just a high-entropy soup of low-energy particles. But today, in between, the universe contains interesting structures such as galaxies and brains and hot-dog-shaped novelty vehicles. We see the pattern:
 
 In answering Sean's provocative question (whether there's some "law of complexodynamics" that would explain his graph), it seems to me that the challenge is twofold:

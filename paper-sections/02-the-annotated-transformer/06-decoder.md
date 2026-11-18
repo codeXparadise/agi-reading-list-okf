@@ -83,7 +83,7 @@ plt.imshow(subsequent_mask(20)[0])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_31_0.png)
+![png](../../assets/02/web-02-03.png)
 
 ---
 

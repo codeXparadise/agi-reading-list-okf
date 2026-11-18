@@ -26,7 +26,7 @@ from IPython.display import Image
 Image(filename='images/aiayn.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_0_0.png)
+![png](../../assets/02/web-02-01.png)
 
 The Transformer from [“Attention is All You\\
 Need”](https://arxiv.org/abs/1706.03762) has been on a lot of people’s minds

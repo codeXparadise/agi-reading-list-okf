@@ -6,7 +6,7 @@ Semantic chunks for this paper, in the paper's own section order. Retrieve these
 
 ## Sections
 
-1. [Full text](01-full-text.md) - `other` · 932 words · no pagination
+1. [Full text](01-full-text.md) - `other` · 951 words · no pagination
 
 ## Pages
 

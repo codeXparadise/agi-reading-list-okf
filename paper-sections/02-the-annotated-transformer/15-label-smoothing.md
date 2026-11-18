@@ -69,7 +69,7 @@ plt.imshow(crit.true_dist)
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_74_0.png)
+![png](../../assets/02/web-02-08.png)
 
 > Label smoothing actually starts to penalize the model if it gets very
 > confident about a given choice.

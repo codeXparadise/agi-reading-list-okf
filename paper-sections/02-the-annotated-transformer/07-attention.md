@@ -34,7 +34,7 @@ We compute the dot products of the query with all keys, divide each by
 Image(filename='images/ModalNet-19.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_33_0.png)
+![png](../../assets/02/web-02-04.png)
 
 In practice, we compute the attention function on a set of queries
 simultaneously, packed together into a matrix QQ. The keys and values are
@@ -81,7 +81,7 @@ dkdk.). To counteract this effect, we scale the dot products by
 Image(filename='images/ModalNet-20.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_38_0.png)
+![png](../../assets/02/web-02-05.png)
 
 Multi-head attention allows the model to jointly attend to information from
 different representation subspaces at different positions. With a single

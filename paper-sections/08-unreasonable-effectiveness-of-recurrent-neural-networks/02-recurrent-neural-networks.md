@@ -21,7 +21,7 @@ generated: { by: tools/build_chunks.py, at: 2026-11-17T16:30:00Z }
 
 **Sequences**. Depending on your background you might be wondering: _What makes Recurrent Networks so special_? A glaring limitation of Vanilla Neural Networks (and also Convolutional Networks) is that their API is too constrained: they accept a fixed-sized vector as input (e.g. an image) and produce a fixed-sized vector as output (e.g. probabilities of different classes). Not only that: These models perform this mapping using a fixed amount of computational steps (e.g. the number of layers in the model). The core reason that recurrent nets are more exciting is that they allow us to operate over _sequences_ of vectors: Sequences in the input, the output, or in the most general case both. A few examples may make this more concrete:
 
-![](https://karpathy.github.io/assets/rnn/diags.jpeg)
+![](../../assets/08/web-08-01.jpg)
 
 Each rectangle is a vector and arrows represent functions (e.g. matrix multiply). Input vectors are in red, output vectors are in blue and green vectors hold the RNN's state (more on this soon). From left to right: **(1)** Vanilla mode of processing without RNN, from fixed-sized input to fixed-sized output (e.g. image classification). **(2)** Sequence output (e.g. image captioning takes an image and outputs a sentence of words). **(3)** Sequence input (e.g. sentiment analysis where a given sentence is classified as expressing positive or negative sentiment). **(4)** Sequence input and sequence output (e.g. Machine Translation: an RNN reads a sentence in English and then outputs a sentence in French). **(5)** Synced sequence input and output (e.g. video classification where we wish to label each frame of the video). Notice that in every case are no pre-specified constraints on the lengths sequences because the recurrent transformation (green) is fixed and can be applied as many times as we like.
 
@@ -31,7 +31,7 @@ As you might expect, the sequence regime of operation is much more powerful comp
 
 **Sequential processing in absence of sequences**. You might be thinking that having sequences as inputs or outputs could be relatively rare, but an important point to realize is that even if your inputs/outputs are fixed vectors, it is still possible to use this powerful formalism to _process_ them in a sequential manner. For instance, the figure below shows results from two very nice papers from [DeepMind](http://deepmind.com/). On the left, an algorithm learns a recurrent network policy that steers its attention around an image; In particular, it learns to read out house numbers from left to right ( [Ba et al.](http://arxiv.org/abs/1412.7755)). On the right, a recurrent network _generates_ images of digits by learning to sequentially add color to a canvas ( [Gregor et al.](http://arxiv.org/abs/1502.04623)):
 
-![](https://karpathy.github.io/assets/rnn/house_read.gif)![](https://karpathy.github.io/assets/rnn/house_generate.gif)
+![](../../assets/08/web-08-02.gif)![](https://karpathy.github.io/assets/rnn/house_generate.gif)
 
 Left: RNN learns to read house numbers. Right: RNN learns to paint house numbers.
 
