@@ -77,7 +77,7 @@ Every concept carries `generated` (who wrote it, when) and `verified` (what conf
 Eight items - 02, 04, 08, 09, 22, 23, 26, 27 - were extracted from the web rather than from arXiv. They have section chunks like every other paper, so answer from those normally. Two differences matter when you cite:
 
 - **No page numbers.** Their `paper-pages/<paper>/index.md` says no page chunks exist, because a web page carries no original pagination. Cite the section, not a page. The exception is paper 26, the Kolmogorov book, whose open PDF is paginated: it has page chunks and you may cite them.
-- **Figures are remote.** Their figures point at absolute URLs on the authors' sites rather than into `assets/`. Quote the caption and the surrounding text rather than relying on the image.
+- **Figures vary by paper.** Check `figures.local` and `figures.remote` in the paper's frontmatter. Papers 02, 08, 09 and 22 have local images under `assets/`; a few oversized ones and the four PDF-only papers (04, 23, 26, 27) keep their figures in the original source. If `figures.local` is 0, quote the caption and surrounding text rather than describing an image you cannot see.
 
 Paper 22, *The First Law of Complexodynamics*, is an **excerpt**: the opening argument and the closing passage, with the middle of the essay at the link. Do not summarise it as if you had the whole essay; say that the bundle holds an excerpt.
 

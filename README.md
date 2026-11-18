@@ -70,7 +70,16 @@ Eight papers (02, 04, 08, 09, 22, 23, 26, 27) came from the web rather than arXi
 
 All 30 papers carry full text. Twenty-two were extracted from open PDFs with PyMuPDF; the other eight - *The Annotated Transformer*, AlexNet, Karpathy's RNN essay, Olah's LSTM post, *The First Law of Complexodynamics*, the 1993 Hinton and van Camp paper, the Kolmogorov complexity book and Legg's thesis - are not distributed as open PDFs on arXiv, so their text was extracted from their published web pages and PDFs on the authors' own sites and folded into the same shape.
 
-Two honest caveats about those eight. Their figures are referenced by absolute URL to the source rather than mirrored into `assets/`, because those hosts are not reachable from the extraction environment; and they carry no page chunks, because a web page has no original page numbers and inventing them would make citations wrong. The exception is the Kolmogorov book, whose open PDF has real pagination - pages 1-85 of 519 were fetched, and those page numbers are preserved as `<!-- page N -->` markers, so it has page chunks. The reading list points at chapter 14 (p. 425), which falls outside the fetched range; the link is in the document. *The First Law of Complexodynamics* is the one excerpt rather than a full text: the page extractor capped the fetch, so the document holds the opening argument and the closing passage, with the full essay at the link.
+Their figures are handled per paper, and every paper's frontmatter says which case it is in (`figures.local`, `figures.remote`, `figures.note`):
+
+| Papers | Figures |
+| --- | --- |
+| 02, 08, 09, 22 | 41 images pulled into `assets/` as local files |
+| 02 (3), 08 (6), 09 (3) | the largest source images stay linked to the original: the transfer path caps at about 190 KB per file and these are bigger |
+| 04, 23, 26, 27 | no figures: the source PDFs run from 1.4 MB to 10 MB, well past that cap, so the figures stay in the original |
+| 11 | genuinely has no figures - the paper is text and tables |
+
+The eight also carry no page chunks, because a web page has no original page numbers and inventing them would make citations wrong. The exception is the Kolmogorov book, whose open PDF has real pagination - pages 1-85 of 519 were fetched, and those page numbers are preserved as `<!-- page N -->` markers, so it has page chunks. The reading list points at chapter 14 (p. 425), which falls outside the fetched range; the link is in the document. *The First Law of Complexodynamics* is the one excerpt rather than a full text: the page extractor capped the fetch, so the document holds the opening argument and the closing passage, with the full essay at the link.
 
 ## Reading it as a human
 
