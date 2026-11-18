@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 2
   tool: pymupdf 1.24
+figures:
+  local: 2
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Neural Machine Translation by Jointly Learning to Align and Translate

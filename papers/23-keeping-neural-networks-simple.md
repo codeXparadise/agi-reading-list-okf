@@ -28,6 +28,10 @@ extraction:
   coverage: complete
   tool: Firecrawl PDF parser
   characters: 38174
+figures:
+  local: 0
+  remote: 0
+  note: no figures: the source PDF is larger than the transfer limit, read them in the original
 ---
 
 # Keeping Neural Networks Simple by Minimizing the Description Length of the Weights

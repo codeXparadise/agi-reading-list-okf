@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 15
   tool: pymupdf 1.24
+figures:
+  local: 15
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # A Simple Neural Network Module for Relational Reasoning

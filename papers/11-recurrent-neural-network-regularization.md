@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 0
   tool: pymupdf 1.24
+figures:
+  local: 0
+  remote: 0
+  note: no figures: the source PDF is larger than the transfer limit, read them in the original
 ---
 
 # Recurrent Neural Network Regularization

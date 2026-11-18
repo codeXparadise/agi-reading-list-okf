@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 1
   tool: pymupdf 1.24
+figures:
+  local: 1
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Neural Message Passing for Quantum Chemistry

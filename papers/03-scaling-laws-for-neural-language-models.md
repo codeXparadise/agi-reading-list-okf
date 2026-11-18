@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 22
   tool: pymupdf 1.24
+figures:
+  local: 22
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Scaling Laws for Neural Language Models

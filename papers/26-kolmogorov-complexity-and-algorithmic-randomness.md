@@ -28,6 +28,10 @@ extraction:
   coverage: pages 1-85 of 519
   tool: Apify web-fetch
   characters: 208689
+figures:
+  local: 0
+  remote: 0
+  note: no figures: the source PDF is larger than the transfer limit, read them in the original
 ---
 
 # Kolmogorov Complexity and Algorithmic Randomness

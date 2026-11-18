@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 65
   tool: pymupdf 1.24
+figures:
+  local: 65
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Multi-Scale Context Aggregation by Dilated Convolutions

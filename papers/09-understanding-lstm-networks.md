@@ -28,6 +28,10 @@ extraction:
   coverage: complete
   tool: Firecrawl
   characters: 16088
+figures:
+  local: 17
+  remote: 3
+  note: larger source images stay linked to the original because of the transfer limit
 ---
 
 # Understanding LSTM Networks
@@ -64,7 +68,7 @@ Traditional neural networks can’t do this, and it seems like a major shortcomi
 
 Recurrent neural networks address this issue. They are networks with loops in them, allowing information to persist.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-rolled.png)
+![](/assets/09/web-09-01.png)
 
 **Recurrent Neural Networks have loops.**
 
@@ -72,7 +76,7 @@ In the above diagram, a chunk of neural network, AA, looks at some input xtxt an
 
 These loops make recurrent neural networks seem kind of mysterious. However, if you think a bit more, it turns out that they aren’t all that different than a normal neural network. A recurrent neural network can be thought of as multiple copies of the same network, each passing a message to a successor. Consider what happens if we unroll the loop:
 
-![An unrolled recurrent neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png)
+![An unrolled recurrent neural network.](/assets/09/web-09-02.png)
 
 **An unrolled recurrent neural network.**
 
@@ -108,7 +112,7 @@ LSTMs are explicitly designed to avoid the long-term dependency problem. Remembe
 
 All recurrent neural networks have the form of a chain of repeating modules of neural network. In standard RNNs, this repeating module will have a very simple structure, such as a single tanh layer.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png)
+![](/assets/09/web-09-05.png)
 
 **The repeating module in a standard RNN contains a single layer.**
 
@@ -120,7 +124,7 @@ LSTMs also have this chain like structure, but the repeating module has a differ
 
 Don’t worry about the details of what’s going on. We’ll walk through the LSTM diagram step by step later. For now, let’s just try to get comfortable with the notation we’ll be using.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM2-notation.png)
+![](/assets/09/web-09-07.png)
 
 In the above diagram, each line carries an entire vector, from the output of one node to the inputs of others. The pink circles represent pointwise operations, like vector addition, while the yellow boxes are learned neural network layers. Lines merging denote concatenation, while a line forking denote its content being copied and the copies going to different locations.
 
@@ -130,13 +134,13 @@ The key to LSTMs is the cell state, the horizontal line running through the top 
 
 The cell state is kind of like a conveyor belt. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png)
+![](/assets/09/web-09-08.png)
 
 The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates.
 
 Gates are a way to optionally let information through. They are composed out of a sigmoid neural net layer and a pointwise multiplication operation.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-gate.png)
+![](/assets/09/web-09-09.png)
 
 The sigmoid layer outputs numbers between zero and one, describing how much of each component should be let through. A value of zero means “let nothing through,” while a value of one means “let everything through!”
 
@@ -148,13 +152,13 @@ The first step in our LSTM is to decide what information we’re going to throw 
 
 Let’s go back to our example of a language model trying to predict the next word based on all the previous ones. In such a problem, the cell state might include the gender of the present subject, so that the correct pronouns can be used. When we see a new subject, we want to forget the gender of the old subject.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png)
+![](/assets/09/web-09-10.png)
 
 The next step is to decide what new information we’re going to store in the cell state. This has two parts. First, a sigmoid layer called the “input gate layer” decides which values we’ll update. Next, a tanh layer creates a vector of new candidate values, C~tC~t, that could be added to the state. In the next step, we’ll combine these two to create an update to the state.
 
 In the example of our language model, we’d want to add the gender of the new subject to the cell state, to replace the old one we’re forgetting.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png)
+![](/assets/09/web-09-11.png)
 
 It’s now time to update the old cell state, Ct−1Ct−1, into the new cell state CtCt. The previous steps already decided what to do, we just need to actually do it.
 
@@ -162,13 +166,13 @@ We multiply the old state by ftft, forgetting the things we decided to forget ea
 
 In the case of the language model, this is where we’d actually drop the information about the old subject’s gender and add the new information, as we decided in the previous steps.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png)
+![](/assets/09/web-09-12.png)
 
 Finally, we need to decide what we’re going to output. This output will be based on our cell state, but will be a filtered version. First, we run a sigmoid layer which decides what parts of the cell state we’re going to output. Then, we put the cell state through tanhtanh (to push the values to be between −1−1 and 11) and multiply it by the output of the sigmoid gate, so that we only output the parts we decided to.
 
 For the language model example, since it just saw a subject, it might want to output information relevant to a verb, in case that’s what is coming next. For example, it might output whether the subject is singular or plural, so that we know what form a verb should be conjugated into if that’s what follows next.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png)
+![](/assets/09/web-09-13.png)
 
 ## Variants on Long Short Term Memory
 
@@ -176,17 +180,17 @@ What I’ve described so far is a pretty normal LSTM. But not all LSTMs are the 
 
 One popular LSTM variant, introduced by [Gers & Schmidhuber (2000)](ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf), is adding “peephole connections.” This means that we let the gate layers look at the cell state.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-peepholes.png)
+![](/assets/09/web-09-14.png)
 
 The above diagram adds peepholes to all the gates, but many papers will give some peepholes and not others.
 
 Another variation is to use coupled forget and input gates. Instead of separately deciding what to forget and what we should add new information to, we make those decisions together. We only forget when we’re going to input something in its place. We only input new values to the state when we forget something older.
 
-![](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-tied.png)
+![](/assets/09/web-09-15.png)
 
 A slightly more dramatic variation on the LSTM is the Gated Recurrent Unit, or GRU, introduced by [Cho, et al. (2014)](http://arxiv.org/pdf/1406.1078v3.pdf). It combines the forget and input gates into a single “update gate.” It also merges the cell state and hidden state, and makes some other changes. The resulting model is simpler than standard LSTM models, and has been growing increasingly popular.
 
-![A gated recurrent unit neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png)
+![A gated recurrent unit neural network.](/assets/09/web-09-16.png)
 
 These are only a few of the most notable LSTM variants. There are lots of others, like Depth Gated RNNs by [Yao, et al. (2015)](http://arxiv.org/pdf/1508.03790v2.pdf). There’s also some completely different approach to tackling long-term dependencies, like Clockwork RNNs by [Koutnik, et al. (2014)](http://arxiv.org/pdf/1402.3511v1.pdf).
 
@@ -210,7 +214,7 @@ I’m very grateful to everyone who discussed these ideas and related topics wit
 
 ### More Posts
 
-[![](https://colah.github.io/images/post-covers/attention.png)**Attention and Augmented Recurrent Neural Networks**  **_On Distill_**](http://distill.pub/2016/augmented-rnns/) [![](https://colah.github.io/posts/2014-07-Conv-Nets-Modular/img/fig.png)**Conv Nets**  **A Modular Perspective**](https://colah.github.io/posts/2014-07-Conv-Nets-Modular/) [![](https://colah.github.io/images/post-covers/topology.png)**Neural Networks, Manifolds, and Topology**](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/) [![](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/img/Mikolov-GenderVecs.png)**Deep Learning, NLP, and Representations**](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
+[![](/assets/09/web-09-17.png)**Attention and Augmented Recurrent Neural Networks**  **_On Distill_**](http://distill.pub/2016/augmented-rnns/) [![](/assets/09/web-09-18.png)**Conv Nets**  **A Modular Perspective**](https://colah.github.io/posts/2014-07-Conv-Nets-Modular/) [![](/assets/09/web-09-19.png)**Neural Networks, Manifolds, and Topology**](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/) [![](/assets/09/web-09-20.png)**Deep Learning, NLP, and Representations**](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
 
 ## Relationships
 

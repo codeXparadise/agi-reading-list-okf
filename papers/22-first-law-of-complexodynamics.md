@@ -28,6 +28,10 @@ extraction:
   coverage: excerpt
   tool: built-in page extractor
   characters: 5547
+figures:
+  local: 1
+  remote: 0
+  note: the coffee-cup slide from the essay, saved locally
 ---
 
 # The First Law of Complexodynamics
@@ -63,6 +67,8 @@ My purpose, in this post, is to sketch a possible answer to Sean's question, dra
 First, some background: we all know the Second Law, which says that the entropy of any closed system tends to increase with time until it reaches a maximum value. Here "entropy" is slippery to define—we'll come back to that later—but somehow measures how "random" or "generic" or "disordered" a system is. As Sean points out in his wonderful book From Eternity to Here, the Second Law is almost a tautology: how could a system not tend to evolve to more "generic" configurations? if it didn't, those configurations wouldn't be generic! So the real question is not why the entropy is increasing, but why it was ever low to begin with. In other words, why did the universe's initial state at the big bang contain so much order for the universe's subsequent evolution to destroy? I won't address that celebrated mystery in this post, but will simply take the low entropy of the initial state as given.
 
 The point that interests us is this: even though isolated physical systems get monotonically more entropic, they don't get monotonically more "complicated" or "interesting." Sean didn't define what he meant by "complicated" or "interesting" here—indeed, defining those concepts was part of his challenge—but he illustrated what he had in mind with the example of a coffee cup. Shamelessly ripping off his slides:
+
+![Sean Carroll's coffee-cup slide: entropy rises left to right, but the complexity of the mixture peaks in the middle.](/assets/22/web-22-01.jpg)
 
 Entropy increases monotonically from left to right, but intuitively, the "complexity" seems highest in the middle picture: the one with all the tendrils of milk. And same is true for the whole universe: shortly after the big bang, the universe was basically just a low-entropy soup of high-energy particles. A googol years from now, after the last black holes have sputtered away in bursts of Hawking radiation, the universe will basically be just a high-entropy soup of low-energy particles. But today, in between, the universe contains interesting structures such as galaxies and brains and hot-dog-shaped novelty vehicles. We see the pattern:
 

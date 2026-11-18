@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 5
   tool: pymupdf 1.24
+figures:
+  local: 5
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Pointer Networks

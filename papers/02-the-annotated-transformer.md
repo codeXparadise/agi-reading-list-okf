@@ -28,6 +28,10 @@ extraction:
   coverage: complete
   tool: Firecrawl
   characters: 149675
+figures:
+  local: 17
+  remote: 3
+  note: larger source images stay linked to the original because of the transfer limit
 ---
 
 # The Annotated Transformer
@@ -55,7 +59,7 @@ from IPython.display import Image
 Image(filename='images/aiayn.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_0_0.png)
+![png](/assets/02/web-02-01.png)
 
 The Transformer from [“Attention is All You\\
 Need”](https://arxiv.org/abs/1706.03762) has been on a lot of people’s minds
@@ -227,7 +231,7 @@ in the left and right halves of Figure 1, respectively.
 Image(filename='images/ModalNet-21.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_14_0.png)
+![png](/assets/02/web-02-02.png)
 
 ## Encoder and Decoder Stacks
 
@@ -385,7 +389,7 @@ plt.imshow(subsequent_mask(20)[0])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_31_0.png)
+![png](/assets/02/web-02-03.png)
 
 ### Attention
 
@@ -404,7 +408,7 @@ We compute the dot products of the query with all keys, divide each by
 Image(filename='images/ModalNet-19.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_33_0.png)
+![png](/assets/02/web-02-04.png)
 
 In practice, we compute the attention function on a set of queries
 simultaneously, packed together into a matrix QQ. The keys and values are
@@ -451,7 +455,7 @@ dkdk.). To counteract this effect, we scale the dot products by
 Image(filename='images/ModalNet-20.png')
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_38_0.png)
+![png](/assets/02/web-02-05.png)
 
 Multi-head attention allows the model to jointly attend to information from
 different representation subspaces at different positions. With a single
@@ -631,7 +635,7 @@ plt.legend(["dim %d"%p for p in [4,5,6,7]])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_49_0.png)
+![png](/assets/02/web-02-06.png)
 
 We also experimented with using learned positional embeddings
 [(cite)](https://arxiv.org/pdf/1705.03122.pdf) instead, and found that the two
@@ -832,7 +836,7 @@ plt.legend(["512:4000", "512:8000", "256:4000"])
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_69_0.png)
+![png](/assets/02/web-02-07.png)
 
 ## Regularization
 
@@ -888,7 +892,7 @@ plt.imshow(crit.true_dist)
 None
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_74_0.png)
+![png](/assets/02/web-02-08.png)
 
 > Label smoothing actually starts to penalize the model if it gets very
 > confident about a given choice.
@@ -1335,7 +1339,7 @@ dropout rate Pdrop = 0.1, instead of 0.3.
 Image(filename="images/results.png")
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_113_0.png)
+![png](/assets/02/web-02-10.png)
 
 > The code we have written here is a version of the base model. There are fully
 > trained version of this system available here [(Example\\
@@ -1413,13 +1417,13 @@ for layer in range(1, 6, 2):
 Encoder Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_1.png)
+![png](/assets/02/web-02-11.png)
 
 ```
 Encoder Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_3.png)
+![png](/assets/02/web-02-12.png)
 
 ```
 Encoder Layer 6
@@ -1431,37 +1435,37 @@ Encoder Layer 6
 Decoder Self Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_7.png)
+![png](/assets/02/web-02-14.png)
 
 ```
 Decoder Src Layer 2
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_9.png)
+![png](/assets/02/web-02-15.png)
 
 ```
 Decoder Self Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_11.png)
+![png](/assets/02/web-02-16.png)
 
 ```
 Decoder Src Layer 4
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_13.png)
+![png](/assets/02/web-02-17.png)
 
 ```
 Decoder Self Layer 6
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_15.png)
+![png](/assets/02/web-02-18.png)
 
 ```
 Decoder Src Layer 6
 ```
 
-![png](https://nlp.seas.harvard.edu/images/the-annotated-transformer_119_17.png)
+![png](/assets/02/web-02-19.png)
 
 ## Conclusion
 

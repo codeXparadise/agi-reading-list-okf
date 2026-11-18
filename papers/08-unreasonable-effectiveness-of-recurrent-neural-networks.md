@@ -28,6 +28,10 @@ extraction:
   coverage: complete
   tool: Firecrawl
   characters: 145430
+figures:
+  local: 6
+  remote: 6
+  note: larger source images stay linked to the original because of the transfer limit
 ---
 
 # The Unreasonable Effectiveness of Recurrent Neural Networks
@@ -60,7 +64,7 @@ By the way, together with this post I am also releasing [code on Github](https:/
 
 **Sequences**. Depending on your background you might be wondering: _What makes Recurrent Networks so special_? A glaring limitation of Vanilla Neural Networks (and also Convolutional Networks) is that their API is too constrained: they accept a fixed-sized vector as input (e.g. an image) and produce a fixed-sized vector as output (e.g. probabilities of different classes). Not only that: These models perform this mapping using a fixed amount of computational steps (e.g. the number of layers in the model). The core reason that recurrent nets are more exciting is that they allow us to operate over _sequences_ of vectors: Sequences in the input, the output, or in the most general case both. A few examples may make this more concrete:
 
-![](https://karpathy.github.io/assets/rnn/diags.jpeg)
+![](/assets/08/web-08-01.jpg)
 
 Each rectangle is a vector and arrows represent functions (e.g. matrix multiply). Input vectors are in red, output vectors are in blue and green vectors hold the RNN's state (more on this soon). From left to right: **(1)** Vanilla mode of processing without RNN, from fixed-sized input to fixed-sized output (e.g. image classification). **(2)** Sequence output (e.g. image captioning takes an image and outputs a sentence of words). **(3)** Sequence input (e.g. sentiment analysis where a given sentence is classified as expressing positive or negative sentiment). **(4)** Sequence input and sequence output (e.g. Machine Translation: an RNN reads a sentence in English and then outputs a sentence in French). **(5)** Synced sequence input and output (e.g. video classification where we wish to label each frame of the video). Notice that in every case are no pre-specified constraints on the lengths sequences because the recurrent transformation (green) is fixed and can be applied as many times as we like.
 
@@ -70,7 +74,7 @@ As you might expect, the sequence regime of operation is much more powerful comp
 
 **Sequential processing in absence of sequences**. You might be thinking that having sequences as inputs or outputs could be relatively rare, but an important point to realize is that even if your inputs/outputs are fixed vectors, it is still possible to use this powerful formalism to _process_ them in a sequential manner. For instance, the figure below shows results from two very nice papers from [DeepMind](http://deepmind.com/). On the left, an algorithm learns a recurrent network policy that steers its attention around an image; In particular, it learns to read out house numbers from left to right ( [Ba et al.](http://arxiv.org/abs/1412.7755)). On the right, a recurrent network _generates_ images of digits by learning to sequentially add color to a canvas ( [Gregor et al.](http://arxiv.org/abs/1502.04623)):
 
-![](https://karpathy.github.io/assets/rnn/house_read.gif)![](https://karpathy.github.io/assets/rnn/house_generate.gif)
+![](/assets/08/web-08-02.gif)![](https://karpathy.github.io/assets/rnn/house_generate.gif)
 
 Left: RNN learns to read house numbers. Right: RNN learns to paint house numbers.
 
@@ -119,7 +123,7 @@ As a working example, suppose we only had a vocabulary of four possible letters 
 
 Concretely, we will encode each character into a vector using 1-of-k encoding (i.e. all zero except for a single one at the index of the character in the vocabulary), and feed them into the RNN one at a time with the `step` function. We will then observe a sequence of 4-dimensional output vectors (one dimension per character), which we interpret as the confidence the RNN currently assigns to each character coming next in the sequence. Here’s a diagram:
 
-![](https://karpathy.github.io/assets/rnn/charseq.jpeg)
+![](/assets/08/web-08-04.jpg)
 
 An example RNN with 4-dimensional input and output layers, and a hidden layer of 3 units (neurons). This diagram shows the activations in the forward pass when the RNN is fed the characters "hell" as input. The output layer contains confidences the RNN assigns for the next character (vocabulary is "h,e,l,o"); We want the green numbers to be high and red numbers to be low.
 
@@ -285,7 +289,7 @@ The model completely makes up the timestamp, id, and so on. Also, note that it c
 
 The results above suggest that the model is actually quite good at learning complex syntactic structures. Impressed by these results, my labmate ( [Justin Johnson](http://cs.stanford.edu/people/jcjohns/)) and I decided to push even further into structured territories and got a hold of [this book](http://stacks.math.columbia.edu/) on algebraic stacks/geometry. We downloaded the raw Latex source file (a 16MB file) and trained a multilayer LSTM. Amazingly, the resulting sampled Latex _almost_ compiles. We had to step in and fix a few issues manually but then you get plausible looking math, it’s quite astonishing:
 
-![](https://karpathy.github.io/assets/rnn/latex4.jpeg)
+![](/assets/08/web-08-05.jpg)
 
 Sampled (fake) algebraic geometry. [Here's the actual pdf.](http://cs.stanford.edu/people/jcjohns/fake-math/4.pdf)
 
@@ -644,7 +648,7 @@ The input character sequence (blue/green) is colored based on the _firing_ of a 
 \
 The neuron highlighted in this image seems to get very excited about URLs and turns off outside of the URLs. The LSTM is likely using this neuron to remember if it is inside a URL or not.\
 \
-![](https://karpathy.github.io/assets/rnn/under2.jpeg)\
+![](/assets/08/web-08-08.jpg)\
 \
 The highlighted neuron here gets very excited when the RNN is inside the \[\[ \]\] markdown environment and turns off outside of it. Interestingly, the neuron can't turn on right after it sees the character "\[", it must wait for the second "\[" and then activate. This task of counting whether the model has seen one or two "\[" is likely done with a different neuron.\
 \
@@ -652,7 +656,7 @@ The highlighted neuron here gets very excited when the RNN is inside the \[\[ \]
 \
 Here we see a neuron that varies seemingly linearly across the \[\[ \]\] environment. In other words its activation is giving the RNN a time-aligned coordinate system across the \[\[ \]\] scope. The RNN can use this information to make different characters more or less likely depending on how early/late it is in the \[\[ \]\] scope (perhaps?).\
 \
-![](https://karpathy.github.io/assets/rnn/under4.jpeg)\
+![](/assets/08/web-08-10.jpg)\
 \
 Here is another neuron that has very local behavior: it is relatively silent but sharply turns off right after the first "w" in the "www" sequence. The RNN might be using this neuron to count up how far in the "www" sequence it is, so that it can know whether it should emit another "w", or if it should start the URL.\
 \

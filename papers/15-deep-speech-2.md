@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 8
   tool: pymupdf 1.24
+figures:
+  local: 8
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Deep Speech 2: End-to-End Speech Recognition in English and Mandarin

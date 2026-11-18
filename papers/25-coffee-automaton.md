@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 12
   tool: pymupdf 1.24
+figures:
+  local: 12
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Quantifying the Rise and Fall of Complexity in Closed Systems: The Coffee Automaton

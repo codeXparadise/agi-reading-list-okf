@@ -28,6 +28,10 @@ extraction:
   full_text: extracted
   figures: 4
   tool: pymupdf 1.24
+figures:
+  local: 4
+  remote: 0
+  note: all figures are local files under /assets
 ---
 
 # Adam: A Method for Stochastic Optimization
